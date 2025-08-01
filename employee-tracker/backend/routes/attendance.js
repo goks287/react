@@ -29,11 +29,13 @@ router.post('/log',
     body('regionId')
       .optional()
       .trim()
-      .withMessage('Region ID must be a string'),
+      .isLength({ min: 1 })
+      .withMessage('Region ID must be a non-empty string'),
     body('deviceInfo.platform')
       .optional()
       .trim()
-      .withMessage('Platform must be a string'),
+      .isLength({ min: 1 })
+      .withMessage('Platform must be a non-empty string'),
     body('notes')
       .optional()
       .trim()
@@ -330,7 +332,8 @@ router.get('/admin/logs',
     query('employeeId')
       .optional()
       .trim()
-      .withMessage('Employee ID must be a string'),
+      .isLength({ min: 1 })
+      .withMessage('Employee ID must be a non-empty string'),
     query('startDate')
       .optional()
       .isISO8601()
